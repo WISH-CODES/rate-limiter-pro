@@ -1,0 +1,6 @@
+{
+    "python.defaultInterpreterPath": "/home/vishcodes/rate-limiter-pro/venv/bin/python",
+    "python.analysis.extraPaths": ["./"],
+    "python.analysis.useLibraryCodeForTypes": true
+  }
+  
