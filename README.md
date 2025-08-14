@@ -316,7 +316,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-**Made with ❤️ by the Rate Limiter Pro Team**
+**Made with ❤️ by wish-codes**
 
 [Report Bug](https://github.com/your-username/rate-limiter-pro/issues) • [Request Feature](https://github.com/your-username/rate-limiter-pro/issues) • [Star the Repo](https://github.com/your-username/rate-limiter-pro)
 
