@@ -21,3 +21,13 @@ class UserDelete(BaseModel):
     user_id: int
     model_config = ConfigDict(from_attributes=True)
 
+# login request
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+#token response
+class Token(BaseModel):
+    access_token: str
+    tokey_type: str = "bearer"
+    
