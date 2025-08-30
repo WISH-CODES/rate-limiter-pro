@@ -6,7 +6,7 @@ from app.models import User
 from app.database import get_db
 from app.core.security import hash_password, verify_password, create_access_token,verify_access_token
 from app.rate_limit import check_rate_limit
-from fastapi import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
 router = APIRouter(prefix="/users", tags=["users"])
 
@@ -33,14 +33,14 @@ async def register_user(user: UserCreate, db: AsyncSession = Depends(get_db)):
 
 #login
 
-oauth2_scheme =OAuth2PasswordBearer(tokenUrl="/users/login")
+oauth2_scheme =OAuth2PasswordBearer(tokenUrl="users/login")
 
 @router.post("/login",response_model=Token)
-async def login(from_data: OAuth2PasswordRequestForm = Depends(), db:AsyncSession = Depends(get_db)):
-    result = await db.execute(select(User)where(User.email == from_data.username))
+async def login(form_data: OAuth2PasswordRequestForm = Depends(), db:AsyncSession = Depends(get_db)):
+    result = await db.execute(select(User).where(User.email == form_data.username))
     user = result.scalar_one_or_none()
 
-    if not user or not verify_password(from_data.password, user.hashed_password):
+    if not user or not verify_password(form_data.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
     access_token = create_access_token({"sub":user.email})
